@@ -27,11 +27,8 @@ def accumulate(f: Callable[[A], A], x: list[A]) -> list[A]:
     >>> accumulate(lambda x,y: x+y, [1, 2, 3])
     [1, 3, 6]
     """
-    result = [None] * len(x)
-    x = iter(x)
+    result, x = [None] * len(x), iter(x)
     result[0] = next(x)
-    i = 1
-    for element in x:
-        result[i] = f(element, result[i-1])
-        i += 1
+    for i, element in enumerate(x):
+        result[i+1] = f(element, result[i])
     return result
