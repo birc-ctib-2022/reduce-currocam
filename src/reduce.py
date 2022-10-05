@@ -12,7 +12,8 @@ def reduce(f: Callable[[A], B], x: list[A]) -> B:
     >>> reduce(lambda x,y: x+y, [1, 2, 3])
     6
     """
-    assert len(x) >= 2
+    if len(x) <= 2:
+        return x[0]
     x = iter(x)
     result = f(next(x), next(x))
     for element in x:
