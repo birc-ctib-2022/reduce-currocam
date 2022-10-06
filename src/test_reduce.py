@@ -26,6 +26,13 @@ def test_reduce_with_one_element():
         x = [i]
         assert reduce(add, x) == py_reduce(add, x)
         assert reduce(prod, x) == py_reduce(prod, x)
+def test_reduce_with_two_element():
+    def add(x, y): return x+y
+    def prod(x, y): return x*y
+    for i in range(10):
+        x = [i, i]
+        assert reduce(add, x) == py_reduce(add, x)
+        assert reduce(prod, x) == py_reduce(prod, x)
 
 def test_accumulate():
     def add(x, y): return x+y
